@@ -1,0 +1,75 @@
+// Author:         Mohammed Alzahrani
+// Description:    This application draws an oval in green and a triengle in dark blue.
+// License:        MIT
+//
+
+
+// Reuse
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Container; 
+import java.awt.Color;
+
+// Classes and inheritance 
+class Oval extends JPanel {
+	// Ownership and Encapsulation 
+    private Color ovalColor;
+
+	// Getters and setters
+	public Color getColor() {
+        return ovalColor;
+    }
+    public void setColor(int yellow, int green, int blue) {
+        ovalColor = new Color(yellow, green, blue);
+    }
+
+	// Default constructor
+    Oval() {
+        setColor(0, 255, 0);
+    }
+
+	// Non-default constructor
+    Oval(int yellow, int green, int blue) {
+        setColor(yellow, green, blue);       
+    }
+  public static final Color DARK_BLUE = new Color(0,0,153);
+	// Java graphics programming
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+		// Methods and member functions
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
+		// Association
+        g.setColor(DARK_BLUE);
+        g.fillRect(0, 0, panelWidth, panelHeight);
+        g.setColor(ovalColor);
+        g.fillOval(0, 0, panelWidth, panelHeight);
+    }
+}
+
+class OvalFrame extends JFrame {
+    OvalFrame() {
+        setTitle("OvalDraw");
+        setBounds(500, 400, 250, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Oval myOval = new Oval();
+
+		// Ownership
+        Container contentPane = getContentPane();
+
+		// Containers
+        contentPane.add(myOval);     
+    }
+}
+
+public class OvalDrawPlus {
+    public static void main(String[] args) {
+        System.out.println("OvalDraw Starting...");
+		OvalFrame myFrame = new OvalFrame();
+		myFrame.setVisible(true);
+    }
+}
